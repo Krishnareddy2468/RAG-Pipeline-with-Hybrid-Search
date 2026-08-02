@@ -1,0 +1,55 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# --- Virtual environments ---
+.venv/
+venv/
+env/
+ENV/
+
+# --- Environment / secrets ---
+.env
+.env.*
+!.env.example
+
+# --- Testing / linting / type-checking ---
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+
+# --- Editors ---
+.vscode/
+.idea/
+
+# --- Local-only working notes (day-by-day plan, AI-assisted scratch notes) ---
+# Public-facing architecture docs live in /architecture instead, which IS tracked.
+docs/
+
+# --- Reference material (purchased/received guide, not project source) ---
+BASWE__15_AI_Engineering_Projects_Guide.docx
+
+# --- Derived/regenerable data (rebuilt by the ingestion/indexing pipeline) ---
+data/processed/*
+!data/processed/.gitkeep
+data/indexes/*
+!data/indexes/.gitkeep
+
+# --- Local runtime artifacts ---
+*.log
+*.sqlite3

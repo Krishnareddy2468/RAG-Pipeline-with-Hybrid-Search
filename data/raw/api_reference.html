@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Internal API Reference</title>
+    <style>
+      body { font-family: sans-serif; }
+    </style>
+    <script>
+      console.log("This script should not be included in extracted text.");
+    </script>
+  </head>
+  <body>
+    <nav>
+      Home | APIs | Support
+    </nav>
+
+    <main>
+      <h1>Internal API Reference</h1>
+      <p>Owner: API Platform Team</p>
+      <p>Last updated: 2026-07-28</p>
+
+      <section>
+        <h2>POST /v1/customers</h2>
+        <p>Creates a new customer record. The request must include <code>email</code>, <code>name</code>, and <code>plan_id</code>.</p>
+        <p>Returns status code <code>201</code> when the customer is created successfully.</p>
+      </section>
+
+      <section>
+        <h2>GET /v1/customers/{customer_id}</h2>
+        <p>Returns customer profile details for the provided customer ID.</p>
+        <p>If the customer does not exist, the API returns <code>CUST_404_NOT_FOUND</code>.</p>
+      </section>
+
+      <section>
+        <h2>Rate Limits</h2>
+        <p>Authenticated clients can make 600 requests per minute. If the limit is exceeded, the API returns <code>AUTH_429_RATE_LIMIT</code>.</p>
+      </section>
+
+      <section>
+        <h2>Idempotency</h2>
+        <p>Write endpoints support the <code>Idempotency-Key</code> header. Clients should reuse the same key when retrying a failed create request.</p>
+      </section>
+    </main>
+
+    <footer>
+      Internal use only.
+    </footer>
+  </body>
+</html>

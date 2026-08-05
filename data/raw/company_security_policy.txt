@@ -1,0 +1,24 @@
+Company Security Policy
+
+Document owner: Security Engineering
+Last updated: 2026-07-20
+
+Access Tokens
+
+Access tokens expire after 60 minutes. Refresh tokens expire after 30 days. If a user reports repeated authentication failures, support engineers should first check whether the refresh token is expired.
+
+To rotate an API key, open the Admin Console, go to Security Settings, select API Keys, and click Create New Key. After creating the new key, revoke the old key within 24 hours.
+
+Password Requirements
+
+Passwords must contain at least 12 characters, one uppercase letter, one lowercase letter, one number, and one special character. Password reuse is blocked for the previous 5 passwords.
+
+Incident Reporting
+
+Security incidents must be reported in the incident-response Slack channel within 15 minutes of discovery. Include the affected system, severity, suspected impact, and current mitigation status.
+
+Error Codes
+
+AUTH_403_EXPIRED means the session token has expired and the client must authenticate again.
+AUTH_401_INVALID_KEY means the API key is missing, revoked, or incorrectly formatted.
+AUTH_429_RATE_LIMIT means the client exceeded the allowed request rate.

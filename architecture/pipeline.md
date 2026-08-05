@@ -1,24 +1,29 @@
 # Pipeline Stages
 
-Each stage below maps to a module under `src/rag_pipeline/`. Modules are currently
-scaffolded (empty) and are filled in day by day per the build plan.
+Each stage below maps to a module under `src/rag_pipeline/`. Updated as each stage
+is actually implemented, so this reflects real code, not the original plan.
 
 ## 1. Ingestion — `ingestion/`
 
 | | |
 |---|---|
 | **In** | Raw files in `data/raw/` (`.md`, `.txt`, `.html`, `.pdf`) |
-| **Out** | Normalized `Document` objects with metadata |
-| **Modules** | `loaders.py`, `normalizer.py`, `models.py` |
+| **Out** | Normalized `Document` objects with metadata, persisted to `data/processed/` |
+| **Modules** | `loaders.py`, `normalizer.py`, `models.py`, `processed_store.py` |
 
-- `loaders.py` — one loader per format, returns raw text + basic metadata (file path,
-  page number for PDFs).
-- `normalizer.py` — collapses every format into clean plaintext with a consistent
-  `Document` shape.
-- `models.py` — the `Document` Pydantic model: `source`, `doc_type`, `text`,
-  `section_heading`, `page_number`.
-- Raw and processed documents are both persisted (`data/raw/`, `data/processed/`) so
-  re-indexing never requires re-uploading source files.
+- `loaders.py` — `load_document()` dispatches on file extension to a per-format
+  loader (`load_text`, `load_markdown`, `load_html`, `load_pdf`). Every loader
+  returns raw text; PDF pages are joined with a `[Page N]` marker so page
+  boundaries survive into the normalized text.
+- `normalizer.py` — `normalize_text()` collapses line endings, repeated blank
+  lines, and repeated whitespace into one consistent plaintext shape.
+- `models.py` — the `Document` Pydantic model: `id`, `text`, `source_path`,
+  `source_name`, `file_type`, `metadata` (a dict — currently holds `size_bytes`).
+- `processed_store.py` — `save_processed_document()` writes a `Document` to
+  `data/processed/<source-stem>.json`. Raw and processed documents are both
+  persisted (`data/raw/`, `data/processed/`) so re-indexing never requires
+  re-uploading source files. `data/processed/` is gitignored — it's regenerated
+  from `data/raw/`, not hand-maintained.
 
 ## 2. Chunking — `chunking/`
 

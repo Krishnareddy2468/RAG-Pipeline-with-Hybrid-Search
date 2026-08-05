@@ -1,0 +1,24 @@
+Support Knowledge Base
+
+Owner: Customer Support Operations
+Last updated: 2026-07-22
+
+Account Lockouts
+
+Accounts are locked after 5 failed login attempts within 10 minutes. The lockout lasts 30 minutes. Support can manually unlock an account after verifying the user's identity.
+
+Plan Upgrades
+
+Customers can upgrade plans from the Billing page. Upgrades take effect immediately and are prorated for the remaining billing period.
+
+Plan Downgrades
+
+Downgrades take effect at the end of the current billing cycle. Customers keep access to current plan features until the cycle ends.
+
+Data Export
+
+Workspace administrators can export account data from Settings > Compliance > Export Data. Large exports may take up to 24 hours to complete.
+
+Support Priority
+
+Enterprise customers receive priority support with a target first response time of 2 hours. Pro customers have a target first response time of 8 hours.
